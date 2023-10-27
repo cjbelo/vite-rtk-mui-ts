@@ -9,7 +9,7 @@ TypeScript + React + Redux + MUI + RRD + ESLint + Prettier
 #### Clone the repo
 
 ```
-npx degit emre-cil/vite-mui-ts my-app
+git clone git@github.com:cjbelo/vite-rtk-mui-ts.git my-app
 ```
 
 ```
@@ -19,13 +19,13 @@ cd my-app
 #### Install Dependencies
 
 ```
-pnpm install
+yarn
 ```
 
 #### Run
 
 ```
-pnpm dev
+yarn dev
 ```
 
 #### Paths
@@ -53,18 +53,14 @@ if you don't want to use you can remove these lines from
     }
 ```
 
-
 ### Scripts
 
 | Script        | Description                        |
 | ------------- | ---------------------------------- |
-| pnpm dev      | Runs the application.              |
-| pnpm build    | Create builds for the application. |
-| pnpm preview  | Runs the Vite preview              |
-| pnpm lint     | Display eslint errors              |
-| pnpm lint:fix | Fix the eslint errors              |
-| pnpm format   | Runs prettier for all files        |
-| pnpm test     | Run tests                          |
-
-### Check List
-````
+| yarn dev      | Runs the application.              |
+| yarn build    | Create builds for the application. |
+| yarn preview  | Runs the Vite preview              |
+| yarn lint     | Display eslint errors              |
+| yarn lint:fix | Fix the eslint errors              |
+| yarn format   | Runs prettier for all files        |
+| yarn test     | Run tests                          |
