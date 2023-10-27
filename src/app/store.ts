@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import { apiSlice } from './api/apiSlice';
 import { useDispatch, useSelector, TypedUseSelectorHook } from 'react-redux';
 import userReducer from '@/features/user/userSlice';
@@ -11,7 +12,12 @@ const store = configureStore({
     counter: counterReducer,
     user: userReducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiSlice.middleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(apiSlice.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
