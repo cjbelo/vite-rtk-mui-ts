@@ -1,8 +1,8 @@
-import React from 'react';
 import { changeMode } from '@/features/user/userSlice';
 import { Stack, Box, Typography, IconButton, TypographyVariant, SxProps, Theme } from '@mui/material';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import { useAppDispatch, useAppSelector } from '@/app/store';
+
 const TemplateTester = () => {
   const dispatch = useAppDispatch();
   const mode = useAppSelector((state) => state.user.mode);
@@ -91,7 +91,7 @@ const TemplateTester = () => {
         background: (theme: Theme) =>
           mode === 'dark' ? theme.palette.background.paper : theme.palette.background.default,
 
-          backdropFilter: 'blur(10px)',
+        backdropFilter: 'blur(10px)',
       }}
       gap={2}
     >
@@ -108,7 +108,7 @@ const TemplateTester = () => {
   );
 
   const colorCards = colors.map((cat) => (
-    <Stack key={cat.type} gap={1} >
+    <Stack key={cat.type} gap={1}>
       <Typography variant="h5">{cat.type}</Typography>
       <Stack direction="row" flexWrap="wrap" gap={2}>
         {cat.colors.map((color) => (

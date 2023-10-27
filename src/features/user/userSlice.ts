@@ -1,17 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
+export const sliceName = 'user';
 
 const initialState = {
   token: null,
   user: null,
-  mode: localStorage.getItem('mode')
-    ? localStorage.getItem('mode')
-    : window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? 'dark'
-    : 'light',
+  mode: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
 };
 
 export const userSlice = createSlice({
-  name: 'user',
+  name: sliceName,
   initialState,
   reducers: {
     setCredentials: (state, action) => {
@@ -22,17 +22,18 @@ export const userSlice = createSlice({
       state.token = action.payload;
     },
     changeMode: (state) => {
-      if (state.mode === 'light') {
-        state.mode = 'dark';
-        localStorage.setItem('mode', 'dark');
-      } else {
-        state.mode = 'light';
-        localStorage.setItem('mode', 'light');
-      }
+      state.mode = state.mode === 'light' ? 'dark' : 'light';
     },
   },
 });
 
 export const { setCredentials, setToken, changeMode } = userSlice.actions;
 
-export default userSlice.reducer;
+export const persistConfig = {
+  key: sliceName,
+  storage,
+};
+
+const reducer = persistReducer(persistConfig, userSlice.reducer);
+
+export default reducer;
